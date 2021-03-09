@@ -1,0 +1,20 @@
+sudo: required
+language: python
+matrix:
+  include:
+    - python: 2.7
+    - python: 3.5
+    - python: 3.6
+    - python: 3.7
+    - python: 3.8
+    - python: pypy
+install:
+  - scripts/install-on-travis.sh
+script:
+  - make check
+  - make full-coverage
+after_success:
+  - coveralls
+branches:
+  except:
+    - /^[0-9]/
